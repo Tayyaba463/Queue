@@ -1,113 +1,104 @@
 #include <iostream>
-#include <stdlib.h>
-
 using namespace std;
 
-struct Node {
+struct Node
+{
     int data;
     Node* next;
 };
 
-Node* front = NULL;
-Node* rear = NULL;
+Node* Queue = NULL;
 
-
-void enqueue(int value) {
-    Node* temp = (Node*)malloc(sizeof(Node));
-
+void push (int value)
+{
+    Node *temp = new Node;
     temp->data = value;
     temp->next = NULL;
-
-    if (rear == NULL) {
-        front = rear = temp;
-    } else {
-        rear->next = temp;
-        rear = temp;
+    if (Queue == NULL)
+    {
+        Queue = temp;
     }
+else {
+
+    Node *current = Queue;
+    while (current->next != NULL)
+    {
+       current = current->next;
+    }
+    current->next = temp;
+ }
 }
 
-
-void dequeue() {
-    if (front == NULL) {
-        cout << "Queue Underflow" << endl;
+void pop ()
+{
+    if (Queue == NULL)
+    {
+        cout << "Queue is empty." << endl;
         return;
     }
 
-    Node* temp = front;
-    front = front->next;
-
-    if (front == NULL) {
-        rear = NULL;
-    }
-
-    free(temp);
+    Node *current = Queue;
+    Queue = Queue->next;
+        free(current);
+        cout << "Value has been deleted." << endl;
+   
 }
 
-
-void display() {
-    if (front == NULL) {
-        cout << "Queue is Empty" << endl;
+void display()
+{
+    if (Queue == NULL)
+    {
+        cout << "Queue is empty." << endl;
         return;
     }
 
-    Node* curr = front;
-
-    while (curr != NULL) {
-        cout << curr->data << " ";
-        curr = curr->next;
+    Node* current = Queue;
+    while (current != NULL)
+    {
+        cout << current->data << " -> ";
+        current = current->next;
     }
-
-    cout << endl;
+    cout << "NULL" << endl;
 }
 
-int main() {
 
-    int num, value;
+int main ()
+ {
+     int number, value;
 
-    while (true) {
+      while (true)
+       {
+         cout << "1.To Push the value." << endl;
+         cout << "2.To Pop the value." << endl;
+         cout << "3.Display complete table." << endl; 
+         cout << "4.Exit." << endl;
 
-        cout << "1. Enqueue" << endl;
-        cout << "2. Dequeue" << endl;
-        cout << "3. Display" << endl;
-        cout << "4. Exit" << endl;
+         cin >> number;
 
-        cin >> num;
+         if (number == 1)
+         {
+            cout << "Insert value.";
+            cin >> value; 
+             push(value);
+         }
 
-        if (num == 1) {
+         else if (number == 2)
+          {
+            pop();
+          }
 
-            cout << "Enter value: ";
-            cin >> value;
-
-            enqueue(value);
-
-        }
-
-        else if (num == 2) {
-
-            dequeue();
-            cout << "Value has been successfully dequeued(deleted)." << endl;
-
-        }
-
-        else if (num == 3) {
-
+          else if (number == 3) 
+          {
             display();
-
-        }
-
-        else if (num == 4) {
-
+          }
+          else if (number == 4)
+          {
             cout << "Exited Successfully." << endl;
-            break;
+          }
+          cout << "Enter Wrong Choice." << endl; 
+       }
+       return 0;
+ }
 
-        }
 
-        else {
 
-            cout << "Invalid Choice!" << endl;
-
-        }
-    }
-
-    return 0;
-}
