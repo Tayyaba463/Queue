@@ -95,10 +95,13 @@ int main ()
           {
             cout << "Exited Successfully." << endl;
           }
-          cout << "Enter Wrong Choice." << endl; 
+           else {
+          cout << "Enter Correct Choice." << endl; 
+         }
        }
        return 0;
  }
+
 
 
 
