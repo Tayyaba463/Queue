@@ -1,78 +1,98 @@
 #include <iostream>
 using namespace std;
 
-#define SIZE 10
+#define size 10
 
-int queue[SIZE];
-int front = -1;
+int arr[size];
+int front = 0;
 int rear = -1;
+int currentSize = 0;
 
-void enqueue(int value) {
-    if ((front == 0 && rear == SIZE - 1) || (rear + 1) % SIZE == front) {
-        cout << "Queue Overflow" << endl;
+void push(int value) {
+    if (currentSize == size) {
+        cout << "Queue is full." << endl;
         return;
     }
-    if (front == -1) {
-        front = rear = 0;
-    } else {
-        rear = (rear + 1) % SIZE;
-    }
-    queue[rear] = value;
+    // yaha rear -1 sa jab + 1 hoga tw 0 index ajaiga
+        rear = (rear + 1) % size;
+
+    arr[rear] = value;
+    currentSize++;
 }
 
-void dequeue() {
-    if (front == -1) {
-        cout << "Queue Underflow" << endl;
-        return;
+int frontIndex() {
+    if (currentSize == 0) {
+        cout << "Queue is empty." << endl;
+        return -1;
     }
-    if (front == rear) {
-        front = rear = -1;
-    } else {
-        front = (front + 1) % SIZE;
-    }
+    return arr[front];
 }
 
-void display() {
-    if (front == -1) {
-        cout << "Queue is Empty" << endl;
+void pop() {
+    if (currentSize == 0) {
+        cout << "Queue is empty." << endl;
         return;
     }
-    int i = front;
-    while (true) {
-        cout << queue[i] << " ";
-        if (i == rear) break;
-        i = (i + 1) % SIZE;
+    // yaha zero index pa value ha wo fornt = 0 ki help sa remove. 
+    cout << "Removed: " << arr[front] << endl; 
+
+    // yaha fornt = 1 hojiaga and essi aga increment hota raha ga.
+        front = (front + 1) % size;
+    
+    currentSize--;
+}
+
+void display()
+{
+    if (currentSize == 0)
+    {
+        cout << "Queue is empty." << endl;
+        return;
     }
+
+    int index = front;
+
+    for (int i = 0; i < currentSize; i++)
+    {
+        cout << arr[index] << " ";
+        index = (index + 1) % size;
+    }
+
     cout << endl;
 }
+int main ()
+ {
+     int number, value;
 
-int main() {
-    int num, value;
+      while (true)
+       {
+         cout << "1.To Push the value." << endl;
+         cout << "2.To See value at fornt of Queue value." << endl;
+         cout << "3.To Pop the value." << endl;
+         cout << "4.Display complete table." << endl; 
 
-    while (true) {
-        cout << "1. Enqueue" << endl;
-        cout << "2. Dequeue" << endl;
-        cout << "3. Display" << endl;
-        cout << "4. Exit" << endl;
+         cin >> number;
 
-        cin >> num;
+         if (number == 1)
+         {
+            cout << "Insert value.";
+            cin >> value; 
+             push(value);
+         }
 
-        if (num == 1) {
-            cout << "Enter value: ";
-            cin >> value;
-            enqueue(value);
-        } else if (num == 2) {
-            dequeue();
-            cout << "Value has been successfully dequeued(deleted)." << endl;
-        } else if (num == 3) {
+         else if (number == 2)
+         {
+            frontIndex();
+         }
+         else if (number == 3)
+          {
+            pop();
+          }
+
+          else if (number == 4) 
+          {
             display();
-        } else if (num == 4) {
-            cout << "Exited Successfully." << endl;
-            break;
-        } else {
-            cout << "Invalid Choice!" << endl;
-        }
-    }
-
-    return 0;
-}
+          }
+       }
+       return 0;
+ }
