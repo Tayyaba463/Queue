@@ -70,6 +70,7 @@ int main ()
          cout << "2.To See value at fornt of Queue value." << endl;
          cout << "3.To Pop the value." << endl;
          cout << "4.Display complete table." << endl; 
+         cout << "5.Exit." << endl;  
 
          cin >> number;
 
@@ -93,6 +94,14 @@ int main ()
           {
             display();
           }
+          else if (number == 5)
+          {
+              cout << "Exited Successfully" << endl;
+          }   
+            else {
+          cout << "Enter Correct Choice." << endl; 
+         }
        }
        return 0;
  }
+
