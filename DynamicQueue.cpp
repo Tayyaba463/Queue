@@ -11,7 +11,7 @@ Node* Queue = NULL;
 
 void push (int value)
 {
-    Node *temp = new Node;
+    Node *temp = new Node();
     temp->data = value;
     temp->next = NULL;
     if (Queue == NULL)
@@ -101,6 +101,7 @@ int main ()
        }
        return 0;
  }
+
 
 
 
