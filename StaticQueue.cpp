@@ -1,105 +1,87 @@
 #include <iostream>
 using namespace std;
 
-#define SIZE 10
+#define totalcapacity 10
 
-int queue[SIZE];
-int front = -1;
-int rear = -1;
+int front = 0;
+int arr[totalcapacity];
+int rear = 0;
+int countsize = 0;
 
-void enqueue(int value) {
 
-    if (rear == SIZE - 1) {
-        cout << "Queue Overflow" << endl;
+void push (int value)
+{
+    if (front == totalcapacity -1)
+    {
+        cout << "Queue Overflow. "<< endl;
         return;
     }
 
+    
+    arr[rear] = value;
+    rear++;
+    countsize++;
+}
+
+void pop ()
+{
     if (front == -1)
     {
-        front = 0;
-    }
-
-    rear++;
-    queue[rear] = value;
-}
-
-void dequeue() {
-
-    if (front == 1 || front > rear) {
-        cout << "Queue Underflow" << endl;
+        cout << "Queue is empty. " << endl;
         return;
     }
 
-    front++;
+   arr[front++];
+   countsize--;
+}
 
-    if (front > rear)
+void display ()
+{
+    int index = front;
+    for (int i = 0; i < countsize; i++)
     {
-        front = rear = -1;
-    }
+        cout << "TOP -> " << arr[index] << endl;
+        index = (index + 1) % totalcapacity;
+     }
 }
 
-void display() {
 
-    if (front == -1) {
-        cout << "Queue is Empty" << endl;
-        return;
-    }
+int main()
+ { 
 
-    for (int i = front; i <= rear; i++) {
-        cout << queue[i] << " ";
-    }
+    int number, value;
 
-    cout << endl;
-}
+     while (true)
+     {
+        cout << "1.Push Value." << endl;
+        cout << "2.Pop Value." << endl;
+        cout << "3.Display All." << endl;
+        cout << "4.Exit." << endl;
 
-int main() {
+        cin >> number;
 
-    int num, value;
-
-    while (true) {
-
-        cout << "1. Enqueue" << endl;
-        cout << "2. Dequeue" << endl;
-        cout << "3. Display" << endl;
-        cout << "4. Exit" << endl;
-
-        cin >> num;
-
-        if (num == 1) {
-
-            cout << "Enter value: ";
-            cin >> value;
-
-            enqueue(value);
-
+        if (number == 1)
+        {
+          cout << "Top the value.";
+          cin >> value;
+           push(value);
         }
-
-        else if (num == 2) {
-
-            dequeue();
-            cout << "Value has been successfully dequeued(deleted)." << endl;
-
+        else if (number == 2)
+        {
+            pop();
         }
-
-        else if (num == 3) {
-
+       else  if (number == 3)
+        {
             display();
-
         }
-
-        else if (num == 4) {
-
-            cout << "Exited Successfully." << endl;
+        else if (number == 4)
+        {
+            cout << "Exit Successfully from the system." << endl;
             break;
-
         }
-
         else {
-
-            cout << "Invalid Choice!" << endl;
-
+            cout << "Enter Correct Choice." << endl;
         }
-    }
-
+     }
     return 0;
-}
+ }
