@@ -69,7 +69,7 @@ int main ()
          cout << "1.EnQueue Value." << endl;
          cout << "2.Front Value." << endl;
          cout << "3.DeQueue Value." << endl;
-         cout << "4.Display complete table." << endl; 
+         cout << "4.Display." << endl; 
          cout << "5.Exit." << endl;  
 
          cin >> number;
