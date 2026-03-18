@@ -8,7 +8,7 @@ int front = 0;
 int rear = -1;
 int currentSize = 0;
 
-void push(int value) {
+void EnQueue (int value) {
     if (currentSize == size) {
         cout << "Queue is full." << endl;
         return;
@@ -28,7 +28,7 @@ int frontIndex() {
     return arr[front];
 }
 
-void pop() {
+void DeQueue () {
     if (currentSize == 0) {
         cout << "Queue is empty." << endl;
         return;
@@ -66,9 +66,9 @@ int main ()
 
       while (true)
        {
-         cout << "1.To Push the value." << endl;
-         cout << "2.To See value at fornt of Queue value." << endl;
-         cout << "3.To Pop the value." << endl;
+         cout << "1.EnQueue Value." << endl;
+         cout << "2.Front Value." << endl;
+         cout << "3.DeQueue Value." << endl;
          cout << "4.Display complete table." << endl; 
          cout << "5.Exit." << endl;  
 
@@ -78,7 +78,7 @@ int main ()
          {
             cout << "Insert value.";
             cin >> value; 
-             push(value);
+             EnQueue (value);
          }
 
          else if (number == 2)
@@ -87,7 +87,7 @@ int main ()
          }
          else if (number == 3)
           {
-            pop();
+            DeQueue ();
           }
 
           else if (number == 4) 
