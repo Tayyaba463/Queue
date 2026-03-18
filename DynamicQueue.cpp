@@ -9,9 +9,10 @@ struct Node
 
 Node* Queue = NULL;
 
-void push (int value)
+void EnQueue (int value)
 {
-    Node *temp = new Node();
+    Node *temp;
+    temp = (Node*) malloc (sizeof(Node));
     temp->data = value;
     temp->next = NULL;
     if (Queue == NULL)
@@ -29,7 +30,7 @@ else {
  }
 }
 
-void pop ()
+void DeQueue ()
 {
     if (Queue == NULL)
     {
@@ -40,7 +41,7 @@ void pop ()
     Node *current = Queue;
     Queue = Queue->next;
         free(current);
-        cout << "Value has been deleted." << endl;
+        cout << "Value DeQueue." << endl;
    
 }
 
@@ -68,9 +69,9 @@ int main ()
 
       while (true)
        {
-         cout << "1.To Push the value." << endl;
-         cout << "2.To Pop the value." << endl;
-         cout << "3.Display complete table." << endl; 
+         cout << "1.EnQueue value." << endl;
+         cout << "2.DeQueue value." << endl;
+         cout << "3.Display." << endl; 
          cout << "4.Exit." << endl;
 
          cin >> number;
@@ -79,12 +80,12 @@ int main ()
          {
             cout << "Insert value.";
             cin >> value; 
-             push(value);
+            EnQueue (value);
          }
 
          else if (number == 2)
           {
-            pop();
+            DeQueue ();
           }
 
           else if (number == 3) 
