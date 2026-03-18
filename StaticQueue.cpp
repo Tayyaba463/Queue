@@ -40,7 +40,7 @@ void display ()
     int index = front;
     for (int i = 0; i < countsize; i++)
     {
-        cout << "TOP -> " << arr[index] << endl;
+        cout << "REAR -> " << arr[index] << endl;
         index = (index + 1) % totalcapacity;
      }
 }
