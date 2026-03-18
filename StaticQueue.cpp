@@ -9,7 +9,7 @@ int rear = 0;
 int countsize = 0;
 
 
-void push (int value)
+void EnQueue (int value)
 {
     if (front == totalcapacity -1)
     {
@@ -23,7 +23,7 @@ void push (int value)
     countsize++;
 }
 
-void pop ()
+void DeQueue ()
 {
     if (front == -1)
     {
@@ -53,8 +53,8 @@ int main()
 
      while (true)
      {
-        cout << "1.Push Value." << endl;
-        cout << "2.Pop Value." << endl;
+        cout << "1.EnQueue Value." << endl;
+        cout << "2.DeQueue Value." << endl;
         cout << "3.Display All." << endl;
         cout << "4.Exit." << endl;
 
@@ -64,11 +64,11 @@ int main()
         {
           cout << "Top the value.";
           cin >> value;
-           push(value);
+           EnQueue(value);
         }
         else if (number == 2)
         {
-            pop();
+            DeQueue();
         }
        else  if (number == 3)
         {
